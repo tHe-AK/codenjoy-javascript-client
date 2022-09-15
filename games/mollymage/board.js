@@ -63,7 +63,7 @@ var MollymageBoard = module.exports = function(board){
     board.getBarriers = function() {
         var all = board.getGhosts();
         all = all.concat(board.getWalls());
-        all = all.concat(board.getPotions());
+        // all = all.concat(board.getPotions());
         all = all.concat(board.getTreasureBoxes());
         all = all.concat(board.getOtherHeroes());
         all = all.concat(board.getEnemyHeroes());
@@ -117,10 +117,18 @@ var MollymageBoard = module.exports = function(board){
         for (var index in potions) {
             var potion = potions[index];
             result.push(potion);
+            result.push(new Point(potion.getX() - 3, potion.getY())); // TODO to remove duplicate
+            result.push(new Point(potion.getX() - 2, potion.getY())); // TODO to remove duplicate
             result.push(new Point(potion.getX() - 1, potion.getY())); // TODO to remove duplicate
             result.push(new Point(potion.getX() + 1, potion.getY()));
+            result.push(new Point(potion.getX() + 2, potion.getY()));
+            result.push(new Point(potion.getX() + 3, potion.getY()));
+            result.push(new Point(potion.getX()    , potion.getY() - 3));
+            result.push(new Point(potion.getX()    , potion.getY() - 2));
             result.push(new Point(potion.getX()    , potion.getY() - 1));
             result.push(new Point(potion.getX()    , potion.getY() + 1));
+            result.push(new Point(potion.getX()    , potion.getY() + 2));
+            result.push(new Point(potion.getX()    , potion.getY() + 3));
         }
         var result2 = [];
         for (var index in result) {
